@@ -287,7 +287,8 @@ router.get("/villages/search", async (req, res) => {
       },
     });
 
-    const data = villages.map((village) => ({
+    const data = villages.map(
+  (village: typeof villages[number]) => ({
       code: village.code,
       name: village.name,
 
