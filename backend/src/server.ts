@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -76,7 +76,7 @@ app.use(
 app.get(
   "/api/auth/me",
   authenticate,
-  (req: AuthenticatedRequest, res) => {
+  (req: AuthenticatedRequest, res: Response) => {
     res.json({
       success: true,
       message: "Authentication successful",
@@ -92,7 +92,7 @@ app.get(
 app.get(
   "/api/auth/api-key-test",
   authenticateApiKey,
-  (req: ApiKeyRequest, res) => {
+  (req: ApiKeyRequest, res: Response) => {
     res.json({
       success: true,
       message: "API key authentication successful",
@@ -106,25 +106,30 @@ app.get(
 // HEALTH CHECK
 // ==================================================
 
-app.get("/health", (req, res) => {
-  res.json({
-    status: "ok",
-    timestamp: new Date(),
-    environment: env.NODE_ENV,
-  });
-});
+app.get(
+  "/health",
+  (req: Request, res: Response) => {
+    res.json({
+      status: "ok",
+      timestamp: new Date(),
+      environment: env.NODE_ENV,
+    });
+  }
+);
 
 // ==================================================
 // 404 HANDLER
 // ==================================================
 
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: "Not Found",
-    message: "The requested resource was not found",
-  });
-});
+app.use(
+  (req: Request, res: Response) => {
+    res.status(404).json({
+      success: false,
+      error: "Not Found",
+      message: "The requested resource was not found",
+    });
+  }
+);
 
 // ==================================================
 // SERVER STARTUP
