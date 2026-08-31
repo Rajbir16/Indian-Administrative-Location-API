@@ -1,0 +1,505 @@
+﻿
+================================================================================
+MDDS DATASET INSPECTION REPORT
+================================================================================
+
+[FILES] Found 30 dataset files:
+
+  * Rdir_2011_02_HIMACHAL_PRADESH.xls
+  * Rdir_2011_03_PUNJAB.xls
+  * Rdir_2011_06_HARYANA.xls
+  * Rdir_2011_08_RAJASTHAN.xls
+  * Rdir_2011_09_UTTAR_PRADESH.ods
+  * Rdir_2011_10_BIHAR.xls
+  * Rdir_2011_11_SIKKIM.xls
+  * Rdir_2011_12_ARUNACHAL_PRADESH.xls
+  * Rdir_2011_13_NAGALAND.xls
+  * Rdir_2011_15_MIZORAM.xls
+  * Rdir_2011_16_TRIPURA.xls
+  * Rdir_2011_17_MEGHALAYA.xls
+  * Rdir_2011_18_ASSAM.xls
+  * Rdir_2011_19_WEST_BENGAL.xls
+  * Rdir_2011_20_JHARKHAND.xls
+  * Rdir_2011_21_ODISHA.xls
+  * Rdir_2011_22_CHHATTISGARH.xls
+  * Rdir_2011_23_MADHYA_PRADESH.xls
+  * Rdir_2011_24_GUJARAT.xls
+  * Rdir_2011_25_DAMAN_and_DIU.xls
+  * Rdir_2011_26_DADRA_and_NAGAR_HAVELI.xls
+  * Rdir_2011_27_MAHARASHTRA.xls
+  * Rdir_2011_28_ANDHRA_PRADESH.xls
+  * Rdir_2011_29_KARNATAKA.xls
+  * Rdir_2011_30_GOA.xls
+  * Rdir_2011_31_LAKSHADWEEP.xls
+  * Rdir_2011_32_KERALA.xls
+  * Rdir_2011_33_TAMIL_NADU.xls
+  * Rdir_2011_34_PUDUCHERRY.xls
+  * Rdir_2011_35_ANDAMAN_and_NICOBAR_ISLANDS.xls
+
+[INSPECT] Inspecting 30 files...
+
+  Processing: Rdir_2011_02_HIMACHAL_PRADESH.xls... [OK]
+  Processing: Rdir_2011_03_PUNJAB.xls... [OK]
+  Processing: Rdir_2011_06_HARYANA.xls... [OK]
+  Processing: Rdir_2011_08_RAJASTHAN.xls... [OK]
+  Processing: Rdir_2011_09_UTTAR_PRADESH.ods... [ERROR] Failed to read ODS: module 'odf.table' has no attribute 'P'
+  Processing: Rdir_2011_10_BIHAR.xls... [OK]
+  Processing: Rdir_2011_11_SIKKIM.xls... [OK]
+  Processing: Rdir_2011_12_ARUNACHAL_PRADESH.xls... [OK]
+  Processing: Rdir_2011_13_NAGALAND.xls... [OK]
+  Processing: Rdir_2011_15_MIZORAM.xls... [OK]
+  Processing: Rdir_2011_16_TRIPURA.xls... [OK]
+  Processing: Rdir_2011_17_MEGHALAYA.xls... [OK]
+  Processing: Rdir_2011_18_ASSAM.xls... [OK]
+  Processing: Rdir_2011_19_WEST_BENGAL.xls... [OK]
+  Processing: Rdir_2011_20_JHARKHAND.xls... [OK]
+  Processing: Rdir_2011_21_ODISHA.xls... [OK]
+  Processing: Rdir_2011_22_CHHATTISGARH.xls... [OK]
+  Processing: Rdir_2011_23_MADHYA_PRADESH.xls... [OK]
+  Processing: Rdir_2011_24_GUJARAT.xls... [OK]
+  Processing: Rdir_2011_25_DAMAN_and_DIU.xls... [OK]
+  Processing: Rdir_2011_26_DADRA_and_NAGAR_HAVELI.xls... [OK]
+  Processing: Rdir_2011_27_MAHARASHTRA.xls... [OK]
+  Processing: Rdir_2011_28_ANDHRA_PRADESH.xls... [OK]
+  Processing: Rdir_2011_29_KARNATAKA.xls... [OK]
+  Processing: Rdir_2011_30_GOA.xls... [OK]
+  Processing: Rdir_2011_31_LAKSHADWEEP.xls... [OK]
+  Processing: Rdir_2011_32_KERALA.xls... [OK]
+  Processing: Rdir_2011_33_TAMIL_NADU.xls... [OK]
+  Processing: Rdir_2011_34_PUDUCHERRY.xls... [OK]
+  Processing: Rdir_2011_35_ANDAMAN_and_NICOBAR_ISLANDS.xls... [OK]
+
+================================================================================
+INSPECTION SUMMARY
+================================================================================
+
+[FILE FORMATS]
+  .xls files:  29
+  .xlsx files: 0
+  .ods files:  1
+  Total:       30
+
+--------------------------------------------------------------------------------
+DETAILED FILE ANALYSIS
+--------------------------------------------------------------------------------
+
+[FILE] Rdir_2011_02_HIMACHAL_PRADESH.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 20831
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 2, 'STATE NAME': 'HIMACHAL PRADESH', 'MDDS DTC': 0, 'DISTRICT NAME': 'HIMACHAL PRADESH', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'HIMACHAL PRADESH', 'MDDS PLCN': 0, 'Area Name': 'HIMACHAL PRADESH'}
+
+[FILE] Rdir_2011_03_PUNJAB.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Sheet1
+     Rows: 12813
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 3, 'STATE NAME': 'PUNJAB', 'MDDS DTC': 0, 'DISTRICT NAME': 'PUNJAB', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'PUNJAB', 'MDDS PLCN': 0, 'Area Name': 'PUNJAB'}
+
+[FILE] Rdir_2011_06_HARYANA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 7026
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 6, 'STATE NAME': 'HARYANA', 'MDDS DTC': 0, 'DISTRICT NAME': 'HARYANA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'HARYANA', 'MDDS PLCN': 0, 'Area Name': 'HARYANA'}
+
+[FILE] Rdir_2011_08_RAJASTHAN.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 45101
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 8, 'STATE NAME': 'RAJASTHAN', 'MDDS DTC': 0, 'DISTRICT NAME': 'RAJASTHAN', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'RAJASTHAN', 'MDDS PLCN': 0, 'Area Name': 'RAJASTHAN'}
+
+[FILE] Rdir_2011_09_UTTAR_PRADESH.ods
+   Status: ERROR
+   Error: Failed to read ODS: module 'odf.table' has no attribute 'P'
+
+[FILE] Rdir_2011_10_BIHAR.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 45511
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 10, 'STATE NAME': 'BIHAR', 'MDDS DTC': 0, 'DISTRICT NAME': 'BIHAR', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'BIHAR', 'MDDS PLCN': 0, 'Area Name': 'BIHAR'}
+
+[FILE] Rdir_2011_11_SIKKIM.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 466
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 11, 'STATE NAME': 'SIKKIM', 'MDDS DTC': 0, 'DISTRICT NAME': 'SIKKIM', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'SIKKIM', 'MDDS PLCN': 0, 'Area Name': 'SIKKIM'}
+
+[FILE] Rdir_2011_12_ARUNACHAL_PRADESH.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 5795
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 12, 'STATE NAME': 'ARUNACHAL PRADESH', 'MDDS DTC': 0, 'DISTRICT NAME': 'ARUNACHAL PRADESH', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'ARUNACHAL PRADESH', 'MDDS PLCN': 0, 'Area Name': 'ARUNACHAL PRADESH'}
+
+[FILE] Rdir_2011_13_NAGALAND.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 1561
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 13, 'STATE NAME': 'NAGALAND', 'MDDS DTC': 0, 'DISTRICT NAME': 'NAGALAND', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'NAGALAND', 'MDDS PLCN': 0, 'Area Name': 'NAGALAND'}
+
+[FILE] Rdir_2011_15_MIZORAM.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 868
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 15, 'STATE NAME': 'MIZORAM', 'MDDS DTC': 0, 'DISTRICT NAME': 'MIZORAM', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'MIZORAM', 'MDDS PLCN': 0, 'Area Name': 'MIZORAM'}
+
+[FILE] Rdir_2011_16_TRIPURA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 950
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 16, 'STATE NAME': 'TRIPURA', 'MDDS DTC': 0, 'DISTRICT NAME': 'TRIPURA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'TRIPURA', 'MDDS PLCN': 0, 'Area Name': 'TRIPURA'}
+
+[FILE] Rdir_2011_17_MEGHALAYA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 6898
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 17, 'STATE NAME': 'MEGHALAYA', 'MDDS DTC': 0, 'DISTRICT NAME': 'MEGHALAYA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'MEGHALAYA', 'MDDS PLCN': 0, 'Area Name': 'MEGHALAYA'}
+
+[FILE] Rdir_2011_18_ASSAM.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 26762
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Missing Values: {'MDDS Sub_DT': 1, 'SUB-DISTRICT NAME': 1}
+     Sample Row (1st): {'MDDS STC': 18, 'STATE NAME': 'ASSAM', 'MDDS DTC': 0, 'DISTRICT NAME': 'ASSAM', 'MDDS Sub_DT': 0.0, 'SUB-DISTRICT NAME': 'ASSAM', 'MDDS PLCN': 0, 'Area Name': 'ASSAM'}
+
+[FILE] Rdir_2011_19_WEST_BENGAL.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 41395
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 19, 'STATE NAME': 'WEST BENGAL', 'MDDS DTC': 0, 'DISTRICT NAME': 'WEST BENGAL', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'WEST BENGAL', 'MDDS PLCN': 0, 'Area Name': 'WEST BENGAL'}
+
+[FILE] Rdir_2011_20_JHARKHAND.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 32868
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 20, 'STATE NAME': 'JHARKHAND', 'MDDS DTC': 0, 'DISTRICT NAME': 'JHARKHAND', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'JHARKHAND', 'MDDS PLCN': 0, 'Area Name': 'JHARKHAND'}
+
+[FILE] Rdir_2011_21_ODISHA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 52037
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 21, 'STATE NAME': 'ODISHA', 'MDDS DTC': 0, 'DISTRICT NAME': 'ODISHA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'ODISHA', 'MDDS PLCN': 0, 'Area Name': 'ODISHA'}
+
+[FILE] Rdir_2011_22_CHHATTISGARH.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 20348
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 22, 'STATE NAME': 'CHHATTISGARH', 'MDDS DTC': 0, 'DISTRICT NAME': 'CHHATTISGARH', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'CHHATTISGARH', 'MDDS PLCN': 0, 'Area Name': 'CHHATTISGARH'}
+
+[FILE] Rdir_2011_23_MADHYA_PRADESH.xls
+   Status: OK
+   Format: xls
+   Sheets: 2
+
+   [SHEET] Sheet2
+     Rows: 53
+     Columns: 6
+     Duplicates: 1
+     Columns: ['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+              ... and 1 more
+     Missing Values: {'Unnamed: 0': 3, 'Unnamed: 1': 3, 'Unnamed: 2': 3, 'Unnamed: 3': 3, 'Unnamed: 4': 2, 'Unnamed: 5': 53}
+     Sample Row (1st): {'Unnamed: 0': nan, 'Unnamed: 1': nan, 'Unnamed: 2': nan, 'Unnamed: 3': nan, 'Unnamed: 4': nan, 'Unnamed: 5': nan}
+
+   [SHEET] Village Directory
+     Rows: 55495
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 23, 'STATE NAME': 'MADHYA PRADESH', 'MDDS DTC': 0, 'DISTRICT NAME': 'MADHYA PRADESH', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'MADHYA PRADESH', 'MDDS PLCN': 0, 'Area Name': 'MADHYA PRADESH'}
+
+[FILE] Rdir_2011_24_GUJARAT.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 18764
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 24, 'STATE NAME': 'GUJARAT', 'MDDS DTC': 0, 'DISTRICT NAME': 'GUJARAT', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'GUJARAT', 'MDDS PLCN': 0, 'Area Name': 'GUJARAT'}
+
+[FILE] Rdir_2011_25_DAMAN_and_DIU.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 30
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 25, 'STATE NAME': 'DAMAN & DIU', 'MDDS DTC': 0, 'DISTRICT NAME': 'DAMAN & DIU', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'DAMAN & DIU', 'MDDS PLCN': 0, 'Area Name': 'DAMAN & DIU'}
+
+[FILE] Rdir_2011_26_DADRA_and_NAGAR_HAVELI.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 73
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 26, 'STATE NAME': 'DADRA & NAGAR HAVELI', 'MDDS DTC': 0, 'DISTRICT NAME': 'DADRA & NAGAR HAVELI', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'DADRA & NAGAR HAVELI', 'MDDS PLCN': 0, 'Area Name': 'DADRA & NAGAR HAVELI'}
+
+[FILE] Rdir_2011_27_MAHARASHTRA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 44339
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 27, 'STATE NAME': 'MAHARASHTRA', 'MDDS DTC': 0, 'DISTRICT NAME': 'MAHARASHTRA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'MAHARASHTRA', 'MDDS PLCN': 0, 'Area Name': 'MAHARASHTRA'}
+
+[FILE] Rdir_2011_28_ANDHRA_PRADESH.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 29389
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 28, 'STATE NAME': 'ANDHRA PRADESH', 'MDDS DTC': 0, 'DISTRICT NAME': 'ANDHRA PRADESH', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'ANDHRA PRADESH', 'MDDS PLCN': 0, 'Area Name': 'ANDHRA PRADESH'}
+
+[FILE] Rdir_2011_29_KARNATAKA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 29747
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 29, 'STATE NAME': 'KARNATAKA', 'MDDS DTC': 0, 'DISTRICT NAME': 'KARNATAKA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'KARNATAKA', 'MDDS PLCN': 0, 'Area Name': 'KARNATAKA'}
+
+[FILE] Rdir_2011_30_GOA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 411
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 30, 'STATE NAME': 'GOA', 'MDDS DTC': 0, 'DISTRICT NAME': 'GOA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'GOA', 'MDDS PLCN': 0, 'Area Name': 'GOA'}
+
+[FILE] Rdir_2011_31_LAKSHADWEEP.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 39
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 31, 'STATE NAME': 'LAKSHADWEEP', 'MDDS DTC': 0, 'DISTRICT NAME': 'LAKSHADWEEP', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'LAKSHADWEEP', 'MDDS PLCN': 0, 'Area Name': 'LAKSHADWEEP'}
+
+[FILE] Rdir_2011_32_KERALA.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 1573
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 32, 'STATE NAME': 'KERALA', 'MDDS DTC': 0, 'DISTRICT NAME': 'KERALA', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'KERALA', 'MDDS PLCN': 0, 'Area Name': 'KERALA'}
+
+[FILE] Rdir_2011_33_TAMIL_NADU.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 16618
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 33, 'STATE NAME': 'TAMIL NADU', 'MDDS DTC': 0, 'DISTRICT NAME': 'TAMIL NADU', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'TAMIL NADU', 'MDDS PLCN': 0, 'Area Name': 'TAMIL NADU'}
+
+[FILE] Rdir_2011_34_PUDUCHERRY.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 108
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 34, 'STATE NAME': 'PUDUCHERRY', 'MDDS DTC': 0, 'DISTRICT NAME': 'PUDUCHERRY', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'PUDUCHERRY', 'MDDS PLCN': 0, 'Area Name': 'PUDUCHERRY'}
+
+[FILE] Rdir_2011_35_ANDAMAN_and_NICOBAR_ISLANDS.xls
+   Status: OK
+   Format: xls
+   Sheets: 1
+
+   [SHEET] Village Directory
+     Rows: 572
+     Columns: 8
+     Duplicates: 0
+     Columns: ['MDDS STC', 'STATE NAME', 'MDDS DTC', 'DISTRICT NAME', 'MDDS Sub_DT']
+              ... and 3 more
+     Sample Row (1st): {'MDDS STC': 35, 'STATE NAME': 'ANDAMAN & NICOBAR ISLANDS', 'MDDS DTC': 0, 'DISTRICT NAME': 'ANDAMAN & NICOBAR ISLANDS', 'MDDS Sub_DT': 0, 'SUB-DISTRICT NAME': 'ANDAMAN & NICOBAR ISLANDS', 'MDDS PLCN': 0, 'Area Name': 'ANDAMAN & NICOBAR ISLANDS'}
+
+--------------------------------------------------------------------------------
+[COLUMN ANALYSIS]
+--------------------------------------------------------------------------------
+
+Total Unique Columns Across All Files: 14
+
+Sample Columns (from Rdir_2011_02_HIMACHAL_PRADESH.xls):
+  ò MDDS STC
+  ò STATE NAME
+  ò MDDS DTC
+  ò DISTRICT NAME
+  ò MDDS Sub_DT
+  ò SUB-DISTRICT NAME
+  ò MDDS PLCN
+  ò Area Name
+
+--------------------------------------------------------------------------------
+[DATA QUALITY ANALYSIS]
+--------------------------------------------------------------------------------
+
+Total Rows Across All Sheets: 518,441
+Total Duplicates Found: 1
+Files With Missing Values: 2
+
+[SUCCESS] Report saved to: inspection_report.json
+
+================================================================================
+[INSPECTION COMPLETE]
+================================================================================

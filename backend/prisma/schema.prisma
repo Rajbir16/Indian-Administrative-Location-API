@@ -1,0 +1,201 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// LOCATION HIERARCHY MODELS
+// ============================================================================
+
+/// Country model representing a country
+/// Example: India
+model Country {
+  id        Int     @id @default(autoincrement())
+  code      String  @unique
+  name      String
+  status    String  @default("ACTIVE") // ACTIVE, INACTIVE for soft-delete support
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  states    State[]
+
+  @@index([code])
+}
+
+/// State model representing a state/union territory
+/// Example: Maharashtra, Andhra Pradesh
+/// Codes preserved as String to maintain leading zeros from MDDS format
+model State {
+  id        Int     @id @default(autoincrement())
+  code      String  // Preserved as String for leading zeros (e.g., "01", "27")
+  name      String
+  countryId Int
+  status    String  @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  country   Country    @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  districts District[]
+
+  @@unique([code, countryId])
+  @@index([countryId])
+  @@index([code])
+}
+
+/// District model representing a district
+/// Example: Nandurbar, Bengaluru Urban
+/// Codes preserved as String to maintain leading zeros from MDDS format
+model District {
+  id        Int     @id @default(autoincrement())
+  code      String  // Preserved as String for leading zeros (e.g., "497")
+  name      String
+  stateId   Int
+  status    String  @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  state           State         @relation(fields: [stateId], references: [id], onDelete: Cascade)
+  subDistricts    SubDistrict[]
+
+  @@unique([code, stateId])
+  @@index([stateId])
+  @@index([code])
+}
+
+/// SubDistrict (Tehsil/Taluk) model representing a sub-district
+/// Example: Akkalkuwa, Bangalore Urban
+/// Codes preserved as String to maintain leading zeros from MDDS format
+model SubDistrict {
+  id        Int     @id @default(autoincrement())
+  code      String  // Preserved as String for leading zeros (e.g., "03950")
+  name      String
+  districtId Int
+  status    String  @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  district  District  @relation(fields: [districtId], references: [id], onDelete: Cascade)
+  villages  Village[]
+
+  @@unique([code, districtId])
+  @@index([districtId])
+  @@index([code])
+}
+
+/// Village model representing a village
+/// Example: Manibeli, Akkalkuwa
+/// Codes preserved as String to maintain leading zeros from MDDS format
+model Village {
+  id            Int     @id @default(autoincrement())
+  code          String  // Preserved as String for leading zeros (e.g., "591101")
+  name          String
+  subDistrictId Int
+  status        String  @default("ACTIVE")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  subDistrict   SubDistrict @relation(fields: [subDistrictId], references: [id], onDelete: Cascade)
+
+  @@unique([code, subDistrictId])
+  @@index([subDistrictId])
+  @@index([name])
+  @@index([code])
+}
+
+// ============================================================================
+// USER MANAGEMENT MODELS
+// ============================================================================
+
+/// User model representing an authenticated user
+/// Stores user account information
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  name      String
+  password  String  // Will be hashed with bcryptjs
+  status    String  @default("ACTIVE") // ACTIVE, INACTIVE, SUSPENDED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  apiKeys         ApiKey[]
+  stateAccess     UserStateAccess[]
+  apiLogs         ApiLog[]
+
+  @@index([email])
+}
+
+/// ApiKey model representing B2B API keys
+/// Allows programmatic access to the API
+model ApiKey {
+  id        Int     @id @default(autoincrement())
+  key       String  @unique
+  name      String
+  userId    Int
+  status    String  @default("ACTIVE") // ACTIVE, REVOKED, EXPIRED
+  lastUsed  DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([key])
+  @@index([userId])
+}
+
+/// UserStateAccess model representing state-level access control
+/// Controls which states a user can access and at what permission level
+model UserStateAccess {
+  id        Int     @id @default(autoincrement())
+  userId    Int
+  stateCode String  // Reference to State.code for flexibility
+  accessLevel String @default("READ") // READ, WRITE, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, stateCode])
+  @@index([userId])
+  @@index([stateCode])
+}
+
+// ============================================================================
+// ANALYTICS & LOGGING MODELS
+// ============================================================================
+
+/// ApiLog model for tracking API usage
+/// Records all API requests for analytics and rate limiting
+model ApiLog {
+  id           Int     @id @default(autoincrement())
+  userId       Int?
+  apiKeyId     Int?
+  endpoint     String  // e.g., "/api/v1/villages/search"
+  method       String  // GET, POST, PUT, DELETE, PATCH
+  statusCode   Int     // HTTP status code
+  responseTime Int     // milliseconds
+  errorMessage String? // Error message if request failed
+  createdAt    DateTime @default(now())
+
+  // Relations
+  user         User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([endpoint])
+  @@index([apiKeyId])
+}

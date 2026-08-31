@@ -1,0 +1,384 @@
+{
+  "started_at": "2026-08-30T19:16:28.924968",
+  "files_requested": 29,
+  "files": [
+    {
+      "file": "Rdir_2011_02_HIMACHAL_PRADESH.xls",
+      "records_read": 20831,
+      "villages_inserted_or_updated": 20696,
+      "statistics": {
+        "valid": 20696,
+        "placeholder": 130,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 5
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_03_PUNJAB.xls",
+      "records_read": 12813,
+      "villages_inserted_or_updated": 12715,
+      "statistics": {
+        "valid": 12715,
+        "placeholder": 98,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_06_HARYANA.xls",
+      "records_read": 7026,
+      "villages_inserted_or_updated": 6927,
+      "statistics": {
+        "valid": 6927,
+        "placeholder": 96,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 3
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_08_RAJASTHAN.xls",
+      "records_read": 45101,
+      "villages_inserted_or_updated": 44796,
+      "statistics": {
+        "valid": 44796,
+        "placeholder": 278,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 27
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_09_UTTAR_PRADESH.ods",
+      "records_read": 107492,
+      "villages_inserted_or_updated": 107105,
+      "statistics": {
+        "valid": 107105,
+        "placeholder": 384,
+        "missing_name": 1,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 2
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_10_BIHAR.xls",
+      "records_read": 45511,
+      "villages_inserted_or_updated": 44937,
+      "statistics": {
+        "valid": 44937,
+        "placeholder": 573,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 1
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_11_SIKKIM.xls",
+      "records_read": 466,
+      "villages_inserted_or_updated": 452,
+      "statistics": {
+        "valid": 452,
+        "placeholder": 14,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_12_ARUNACHAL_PRADESH.xls",
+      "records_read": 5795,
+      "villages_inserted_or_updated": 5590,
+      "statistics": {
+        "valid": 5590,
+        "placeholder": 205,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_13_NAGALAND.xls",
+      "records_read": 1561,
+      "villages_inserted_or_updated": 1435,
+      "statistics": {
+        "valid": 1435,
+        "placeholder": 126,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_15_MIZORAM.xls",
+      "records_read": 868,
+      "villages_inserted_or_updated": 830,
+      "statistics": {
+        "valid": 830,
+        "placeholder": 38,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_16_TRIPURA.xls",
+      "records_read": 950,
+      "villages_inserted_or_updated": 901,
+      "statistics": {
+        "valid": 901,
+        "placeholder": 49,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_17_MEGHALAYA.xls",
+      "records_read": 6898,
+      "villages_inserted_or_updated": 6851,
+      "statistics": {
+        "valid": 6851,
+        "placeholder": 47,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_18_ASSAM.xls",
+      "records_read": 26762,
+      "villages_inserted_or_updated": 26549,
+      "statistics": {
+        "valid": 26549,
+        "placeholder": 212,
+        "missing_name": 0,
+        "missing_hierarchy": 1,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_19_WEST_BENGAL.xls",
+      "records_read": 41395,
+      "villages_inserted_or_updated": 41014,
+      "statistics": {
+        "valid": 41014,
+        "placeholder": 380,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 1
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_20_JHARKHAND.xls",
+      "records_read": 32868,
+      "villages_inserted_or_updated": 32583,
+      "statistics": {
+        "valid": 32583,
+        "placeholder": 285,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_21_ODISHA.xls",
+      "records_read": 52037,
+      "villages_inserted_or_updated": 51478,
+      "statistics": {
+        "valid": 51478,
+        "placeholder": 509,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 50
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_22_CHHATTISGARH.xls",
+      "records_read": 20348,
+      "villages_inserted_or_updated": 20167,
+      "statistics": {
+        "valid": 20167,
+        "placeholder": 168,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 13
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_24_GUJARAT.xls",
+      "records_read": 18764,
+      "villages_inserted_or_updated": 18481,
+      "statistics": {
+        "valid": 18481,
+        "placeholder": 252,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 31
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_25_DAMAN_and_DIU.xls",
+      "records_read": 30,
+      "villages_inserted_or_updated": 25,
+      "statistics": {
+        "valid": 25,
+        "placeholder": 5,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_26_DADRA_and_NAGAR_HAVELI.xls",
+      "records_read": 73,
+      "villages_inserted_or_updated": 70,
+      "statistics": {
+        "valid": 70,
+        "placeholder": 3,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_27_MAHARASHTRA.xls",
+      "records_read": 44339,
+      "villages_inserted_or_updated": 43946,
+      "statistics": {
+        "valid": 43946,
+        "placeholder": 393,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_28_ANDHRA_PRADESH.xls",
+      "records_read": 29389,
+      "villages_inserted_or_updated": 28168,
+      "statistics": {
+        "valid": 28168,
+        "placeholder": 1152,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 69
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_29_KARNATAKA.xls",
+      "records_read": 29747,
+      "villages_inserted_or_updated": 29521,
+      "statistics": {
+        "valid": 29521,
+        "placeholder": 211,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 15
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_30_GOA.xls",
+      "records_read": 411,
+      "villages_inserted_or_updated": 397,
+      "statistics": {
+        "valid": 397,
+        "placeholder": 14,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_31_LAKSHADWEEP.xls",
+      "records_read": 39,
+      "villages_inserted_or_updated": 27,
+      "statistics": {
+        "valid": 27,
+        "placeholder": 12,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_32_KERALA.xls",
+      "records_read": 1573,
+      "villages_inserted_or_updated": 1494,
+      "statistics": {
+        "valid": 1494,
+        "placeholder": 78,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 1
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_33_TAMIL_NADU.xls",
+      "records_read": 16618,
+      "villages_inserted_or_updated": 16369,
+      "statistics": {
+        "valid": 16369,
+        "placeholder": 249,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_34_PUDUCHERRY.xls",
+      "records_read": 108,
+      "villages_inserted_or_updated": 95,
+      "statistics": {
+        "valid": 95,
+        "placeholder": 13,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "file": "Rdir_2011_35_ANDAMAN_and_NICOBAR_ISLANDS.xls",
+      "records_read": 572,
+      "villages_inserted_or_updated": 559,
+      "statistics": {
+        "valid": 559,
+        "placeholder": 13,
+        "missing_name": 0,
+        "missing_hierarchy": 0,
+        "duplicates_in_source": 0
+      },
+      "status": "SUCCESS"
+    }
+  ],
+  "finished_at": "2026-08-30T19:53:41.985394"
+}
