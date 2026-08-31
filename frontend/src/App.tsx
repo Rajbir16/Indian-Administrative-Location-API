@@ -53,7 +53,8 @@ interface ApiKey {
 
 const API_URL =
   "https://indian-administrative-location-api.onrender.com/api/v1";
-const AUTH_URL = "http://localhost:3000/api/auth";
+const AUTH_URL =
+  "https://indian-administrative-location-api.onrender.com/api/auth"
 
 function App() {
   // ============================================================
