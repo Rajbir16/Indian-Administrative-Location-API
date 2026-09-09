@@ -1,5 +1,22 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { AppShell } from "./components/AppShell";
+import { useAuth } from "./hooks/useAuth";
+import {
+  AccessDeniedPage,
+  AnalyticsPage,
+  DashboardPage,
+  PlaceholderPage,
+} from "./pages/FoundationPages";
+import { ApiKeysPage } from "./pages/ApiKeysPage";
+import { AdminUsersPage } from "./pages/AdminUsersPage";
+import { AdminUserDetailPage } from "./pages/AdminUserDetailPage";
+import { AdminVillagePage } from "./pages/AdminVillagePage";
+import { AdminApiLogsPage } from "./pages/AdminApiLogsPage";
+import { AdminPlanPage } from "./pages/AdminPlanPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { DemoClientPage } from "./pages/DemoClientPage";
 
 interface State {
   id: number;
@@ -51,12 +68,11 @@ interface ApiKey {
   key?: string;
 }
 
-const API_URL =
-  "https://indian-administrative-location-api.onrender.com/api/v1";
-const AUTH_URL =
-  "https://indian-administrative-location-api.onrender.com/api/auth"
+const SERVICE_URL = import.meta.env.VITE_API_URL || "";
+const API_URL = `${SERVICE_URL}/api/v1`;
+const AUTH_URL = `${SERVICE_URL}/api/auth`;
 
-function App() {
+function Phase1Explorer() {
   // ============================================================
   // SEARCH
   // ============================================================
@@ -299,6 +315,10 @@ function App() {
       localStorage.setItem(
         "location_token",
         newToken
+      );
+      localStorage.setItem(
+        "location_user",
+        JSON.stringify(response.data.data.user)
       );
 
       setAuthMessage("Login successful.");
@@ -1078,6 +1098,104 @@ function App() {
       </footer>
 
     </div>
+  );
+}
+
+function ProtectedApp() {
+  const auth = useAuth();
+
+  if (auth.checking) {
+    return <div className="route-loading">Checking your session...</div>;
+  }
+
+  if (!auth.isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return (
+    <AppShell user={auth.user} isAdmin={auth.isAdmin} onLogout={auth.logout}>
+      <Routes>
+        <Route path="dashboard" element={<DashboardPage user={auth.user} />} />
+        <Route path="locations" element={<Phase1Explorer />} />
+        <Route path="search" element={<Phase1Explorer />} />
+        <Route path="api-keys" element={<ApiKeysPage />} />
+        <Route path="analytics" element={<AnalyticsPage user={auth.user} />} />
+        <Route path="usage" element={<DashboardPage user={auth.user} />} />
+        <Route
+  path="admin/users"
+  element={
+    auth.isAdmin ? <AdminUsersPage /> : <AccessDeniedPage />
+  }
+/>
+<Route
+  path="admin/users/:id"
+  element={
+    auth.isAdmin ? (
+      <AdminUserDetailPage />
+    ) : (
+      <AccessDeniedPage />
+    )
+  }
+/>
+<Route
+  path="admin/villages"
+  element={
+    auth.isAdmin ? (
+      <AdminVillagePage />
+    ) : (
+      <AccessDeniedPage />
+    )
+  }
+/>
+<Route
+  path="admin/api-logs"
+  element={
+    auth.isAdmin ? (
+      <AdminApiLogsPage />
+    ) : (
+      <AccessDeniedPage />
+    )
+  }
+/>
+<Route
+  path="admin/plans"
+  element={
+    auth.isAdmin ? (
+      <AdminPlanPage />
+    ) : (
+      <AccessDeniedPage />
+    )
+  }
+/>
+<Route
+  path="admin/*"
+  element={
+    auth.isAdmin ? (
+      <PlaceholderPage
+        title="Administration"
+        description="Select an administration tool from the sidebar."
+      />
+    ) : (
+      <AccessDeniedPage />
+    )
+  }
+/>
+        <Route path="*" element={<Navigate to="dashboard" replace />} />
+      </Routes>
+    </AppShell>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+     <Routes>
+  <Route path="/" element={<Phase1Explorer />} />
+  <Route path="/register" element={<RegisterPage />} />
+  <Route path="/demo" element={<DemoClientPage />} />
+  <Route path="/*" element={<ProtectedApp />} />
+</Routes>
+    </BrowserRouter>
   );
 }
 

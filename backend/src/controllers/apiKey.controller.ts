@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
 import { prisma } from "../config/index.js";
+import { hashPassword } from "../utils/bcrypt.js";
 import { AuthenticatedRequest } from "../middleware/auth.js";
 
 
@@ -20,6 +21,19 @@ export const createApiKey = async (
       });
     }
 
+    const owner = await prisma.user.findUnique({
+      where: { id: req.user.userId },
+      select: { status: true, approvalStatus: true },
+    });
+
+    if (!owner || owner.status !== "ACTIVE" || owner.approvalStatus !== "ACTIVE") {
+      return res.status(403).json({
+        success: false,
+        error: "ACCESS_DENIED",
+        message: "Account approval is required before creating API keys",
+      });
+    }
+
     const { name } = req.body;
 
     if (!name || !String(name).trim()) {
@@ -29,13 +43,33 @@ export const createApiKey = async (
       });
     }
 
-    const apiKey = `INDIAN_LOC_${crypto
-      .randomBytes(32)
+    const activeKeyCount = await prisma.apiKey.count({
+      where: {
+        userId: req.user.userId,
+        status: "ACTIVE",
+      },
+    });
+
+    if (activeKeyCount >= 5) {
+      return res.status(409).json({
+        success: false,
+        error: "API_KEY_LIMIT_REACHED",
+        message: "A user may have a maximum of 5 active API keys",
+      });
+    }
+
+    const apiKey = `ak_${crypto
+      .randomBytes(16)
       .toString("hex")}`;
+    const apiSecret = `as_${crypto
+      .randomBytes(16)
+      .toString("hex")}`;
+    const secretHash = await hashPassword(apiSecret);
 
     const createdKey = await prisma.apiKey.create({
       data: {
         key: apiKey,
+        secretHash,
         name: String(name).trim(),
         userId: req.user.userId,
         status: "ACTIVE",
@@ -52,7 +86,11 @@ export const createApiKey = async (
     return res.status(201).json({
       success: true,
       message: "API key created successfully",
-      data: createdKey,
+      data: {
+        ...createdKey,
+        secret: apiSecret,
+        secretNotice: "This secret is shown only once. Store it securely.",
+      },
     });
   } catch (error) {
     console.error("Create API key error:", error);
@@ -179,5 +217,49 @@ export const revokeApiKey = async (
       success: false,
       error: "Failed to revoke API key",
     });
+  }
+};
+
+export const rotateApiSecret = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ success: false, error: "Authentication required" });
+    }
+
+    const keyId = Number(req.params.id);
+    if (!Number.isInteger(keyId) || keyId <= 0) {
+      return res.status(400).json({ success: false, error: "INVALID_QUERY", message: "Invalid API key ID" });
+    }
+
+    const existingKey = await prisma.apiKey.findFirst({
+      where: { id: keyId, userId: req.user.userId, status: "ACTIVE" },
+      select: { id: true },
+    });
+
+    if (!existingKey) {
+      return res.status(404).json({ success: false, error: "NOT_FOUND", message: "Active API key not found" });
+    }
+
+    const apiSecret = `as_${crypto.randomBytes(16).toString("hex")}`;
+    await prisma.apiKey.update({
+      where: { id: keyId },
+      data: { secretHash: await hashPassword(apiSecret) },
+    });
+
+    return res.json({
+      success: true,
+      message: "API secret rotated successfully",
+      data: {
+        apiKeyId: keyId,
+        secret: apiSecret,
+        secretNotice: "This secret is shown only once. The previous secret is invalid.",
+      },
+    });
+  } catch (error) {
+    console.error("Rotate API secret error:", error);
+    return res.status(500).json({ success: false, error: "INTERNAL_ERROR", message: "Failed to rotate API secret" });
   }
 };

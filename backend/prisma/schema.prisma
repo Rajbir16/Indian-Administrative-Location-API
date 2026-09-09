@@ -10,6 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserApprovalStatus {
+  PENDING_APPROVAL
+  ACTIVE
+  REJECTED
+  SUSPENDED
+}
+
+enum SubscriptionPlan {
+  FREE
+  PREMIUM
+  PRO
+  UNLIMITED
+}
+
+enum StateAccessScope {
+  ALL_STATES
+  SELECTED_STATES
+  REGION
+}
+
+enum UserRole {
+  B2B_USER
+  ADMIN
+}
+
 // ============================================================================
 // LOCATION HIERARCHY MODELS
 // ============================================================================
@@ -17,15 +42,15 @@ datasource db {
 /// Country model representing a country
 /// Example: India
 model Country {
-  id        Int     @id @default(autoincrement())
-  code      String  @unique
+  id        Int      @id @default(autoincrement())
+  code      String   @unique
   name      String
-  status    String  @default("ACTIVE") // ACTIVE, INACTIVE for soft-delete support
+  status    String   @default("ACTIVE") // ACTIVE, INACTIVE for soft-delete support
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  states    State[]
+  states State[]
 
   @@index([code])
 }
@@ -34,11 +59,11 @@ model Country {
 /// Example: Maharashtra, Andhra Pradesh
 /// Codes preserved as String to maintain leading zeros from MDDS format
 model State {
-  id        Int     @id @default(autoincrement())
-  code      String  // Preserved as String for leading zeros (e.g., "01", "27")
+  id        Int      @id @default(autoincrement())
+  code      String // Preserved as String for leading zeros (e.g., "01", "27")
   name      String
   countryId Int
-  status    String  @default("ACTIVE")
+  status    String   @default("ACTIVE")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -55,17 +80,17 @@ model State {
 /// Example: Nandurbar, Bengaluru Urban
 /// Codes preserved as String to maintain leading zeros from MDDS format
 model District {
-  id        Int     @id @default(autoincrement())
-  code      String  // Preserved as String for leading zeros (e.g., "497")
+  id        Int      @id @default(autoincrement())
+  code      String // Preserved as String for leading zeros (e.g., "497")
   name      String
   stateId   Int
-  status    String  @default("ACTIVE")
+  status    String   @default("ACTIVE")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  state           State         @relation(fields: [stateId], references: [id], onDelete: Cascade)
-  subDistricts    SubDistrict[]
+  state        State         @relation(fields: [stateId], references: [id], onDelete: Cascade)
+  subDistricts SubDistrict[]
 
   @@unique([code, stateId])
   @@index([stateId])
@@ -76,17 +101,17 @@ model District {
 /// Example: Akkalkuwa, Bangalore Urban
 /// Codes preserved as String to maintain leading zeros from MDDS format
 model SubDistrict {
-  id        Int     @id @default(autoincrement())
-  code      String  // Preserved as String for leading zeros (e.g., "03950")
-  name      String
+  id         Int      @id @default(autoincrement())
+  code       String // Preserved as String for leading zeros (e.g., "03950")
+  name       String
   districtId Int
-  status    String  @default("ACTIVE")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status     String   @default("ACTIVE")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   // Relations
-  district  District  @relation(fields: [districtId], references: [id], onDelete: Cascade)
-  villages  Village[]
+  district District  @relation(fields: [districtId], references: [id], onDelete: Cascade)
+  villages Village[]
 
   @@unique([code, districtId])
   @@index([districtId])
@@ -97,16 +122,16 @@ model SubDistrict {
 /// Example: Manibeli, Akkalkuwa
 /// Codes preserved as String to maintain leading zeros from MDDS format
 model Village {
-  id            Int     @id @default(autoincrement())
-  code          String  // Preserved as String for leading zeros (e.g., "591101")
+  id            Int      @id @default(autoincrement())
+  code          String // Preserved as String for leading zeros (e.g., "591101")
   name          String
   subDistrictId Int
-  status        String  @default("ACTIVE")
+  status        String   @default("ACTIVE")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   // Relations
-  subDistrict   SubDistrict @relation(fields: [subDistrictId], references: [id], onDelete: Cascade)
+  subDistrict SubDistrict @relation(fields: [subDistrictId], references: [id], onDelete: Cascade)
 
   @@unique([code, subDistrictId])
   @@index([subDistrictId])
@@ -121,57 +146,88 @@ model Village {
 /// User model representing an authenticated user
 /// Stores user account information
 model User {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  name      String
-  password  String  // Will be hashed with bcryptjs
-  status    String  @default("ACTIVE") // ACTIVE, INACTIVE, SUSPENDED
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int                @id @default(autoincrement())
+  email           String             @unique
+  name            String
+  password        String // Will be hashed with bcryptjs
+  status          String             @default("ACTIVE") // Phase 1 compatibility field
+  approvalStatus  UserApprovalStatus @default(PENDING_APPROVAL)
+  role            UserRole           @default(B2B_USER)
+  plan            SubscriptionPlan   @default(FREE)
+  businessEmail   String?
+  businessName    String?
+  gstNumber       String?
+  phoneNumber     String?
+  rejectionReason String?
+  approvedAt      DateTime?
+  approvedBy      Int?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
 
   // Relations
-  apiKeys         ApiKey[]
-  stateAccess     UserStateAccess[]
-  apiLogs         ApiLog[]
+  apiKeys            ApiKey[]
+  stateAccess        UserStateAccess[]
+  stateAccessChanges UserStateAccess[] @relation("StateAccessChangedBy")
+  apiLogs            ApiLog[]
+  notes              UserNote[]
 
   @@index([email])
+  @@index([approvalStatus])
+  @@index([role])
+  @@index([plan])
+  @@index([businessEmail])
 }
 
 /// ApiKey model representing B2B API keys
 /// Allows programmatic access to the API
 model ApiKey {
-  id        Int     @id @default(autoincrement())
-  key       String  @unique
-  name      String
-  userId    Int
-  status    String  @default("ACTIVE") // ACTIVE, REVOKED, EXPIRED
-  lastUsed  DateTime?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int       @id @default(autoincrement())
+  key          String    @unique
+  secretHash   String?
+  name         String
+  userId       Int
+  status       String    @default("ACTIVE") // Phase 1 compatibility field
+  lastUsed     DateTime?
+  expiresAt    DateTime?
+  revokedAt    DateTime?
+  requestCount Int       @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   // Relations
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  apiLogs ApiLog[]
 
   @@index([key])
   @@index([userId])
+  @@index([userId, status])
+  @@index([expiresAt])
 }
 
 /// UserStateAccess model representing state-level access control
 /// Controls which states a user can access and at what permission level
 model UserStateAccess {
-  id        Int     @id @default(autoincrement())
-  userId    Int
-  stateCode String  // Reference to State.code for flexibility
-  accessLevel String @default("READ") // READ, WRITE, ADMIN
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int              @id @default(autoincrement())
+  userId          Int
+  stateCode       String? // Reference to State.code for flexibility
+  scopeType       StateAccessScope @default(SELECTED_STATES)
+  region          String?
+  accessLevel     String           @default("READ") // READ, WRITE, ADMIN
+  changedByUserId Int?
+  revokedAt       DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
 
   // Relations
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  changedByUser User? @relation("StateAccessChangedBy", fields: [changedByUserId], references: [id], onDelete: SetNull)
 
   @@unique([userId, stateCode])
   @@index([userId])
   @@index([stateCode])
+  @@index([scopeType])
+  @@index([region])
+  @@index([changedByUserId])
 }
 
 // ============================================================================
@@ -181,21 +237,40 @@ model UserStateAccess {
 /// ApiLog model for tracking API usage
 /// Records all API requests for analytics and rate limiting
 model ApiLog {
-  id           Int     @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   userId       Int?
   apiKeyId     Int?
-  endpoint     String  // e.g., "/api/v1/villages/search"
-  method       String  // GET, POST, PUT, DELETE, PATCH
-  statusCode   Int     // HTTP status code
-  responseTime Int     // milliseconds
+  endpoint     String // e.g., "/api/v1/villages/search"
+  method       String // GET, POST, PUT, DELETE, PATCH
+  statusCode   Int // HTTP status code
+  responseTime Int // milliseconds
+  maskedIp     String?
+  requestId    String?
+  userAgent    String?
   errorMessage String? // Error message if request failed
   createdAt    DateTime @default(now())
 
   // Relations
-  user         User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  apiKey ApiKey? @relation(fields: [apiKeyId], references: [id], onDelete: SetNull)
 
   @@index([userId])
+  @@index([apiKeyId, createdAt])
   @@index([createdAt])
   @@index([endpoint])
-  @@index([apiKeyId])
+  @@index([statusCode])
+}
+
+model UserNote {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  authorId  Int?
+  note      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([authorId])
 }

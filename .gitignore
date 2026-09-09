@@ -38,3 +38,4 @@ data-import/.venv/
 venv/
 
 data-import/dataset/__MACOSX/
+.neon

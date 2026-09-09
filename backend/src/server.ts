@@ -2,6 +2,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./docs/swagger.js";
+import demoRoutes from "./routes/demo.routes.js";
 
 import {
   env,
@@ -12,6 +15,8 @@ import {
 import locationRoutes from "./routes/location.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import apiKeyRoutes from "./routes/apiKey.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import v1Routes from "./routes/v1.routes.js";
 
 import {
   authenticate,
@@ -24,6 +29,13 @@ import {
 } from "./middleware/apiKey.js";
 
 import { rateLimit } from "./middleware/rateLimit.js";
+import { getOwnUsage, getOwnUsageHistory } from "./controllers/usage.controller.js";
+import {
+  apiErrorHandler,
+  apiNotFound,
+  recordApiUsage,
+  requestContext,
+} from "./middleware/apiFoundation.js";
 
 // Initialize Express app
 const app = express();
@@ -31,6 +43,8 @@ const app = express();
 // ==================================================
 // MIDDLEWARE SETUP
 // ==================================================
+
+app.use(requestContext);
 
 app.use(helmet());
 
@@ -53,11 +67,25 @@ app.use(
 app.use(morgan("combined"));
 
 // ==================================================
+// SWAGGER / OPENAPI DOCUMENTATION
+// ==================================================
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec)
+);
+
+// ==================================================
 // API ROUTES
 // ==================================================
 
 // Location APIs
 app.use("/api/v1", rateLimit, locationRoutes);
+
+// Phase 2 API: API-key protected, versioned endpoints
+app.use("/v1", authenticateApiKey, rateLimit, recordApiUsage, v1Routes);
+app.use("/v1", apiNotFound);
 
 // Authentication APIs
 app.use("/api/auth", rateLimit, authRoutes);
@@ -69,6 +97,12 @@ app.use(
   apiKeyRoutes
 );
 
+app.use("/api/admin", rateLimit, adminRoutes);
+app.use("/api/demo", demoRoutes);
+
+app.get("/api/usage", authenticate, getOwnUsage);
+app.get("/api/usage/history", authenticate, getOwnUsageHistory);
+
 // ==================================================
 // JWT PROTECTED TEST ENDPOINT
 // ==================================================
@@ -76,12 +110,56 @@ app.use(
 app.get(
   "/api/auth/me",
   authenticate,
-  (req: AuthenticatedRequest, res: Response) => {
-    res.json({
-      success: true,
-      message: "Authentication successful",
-      user: req.user,
-    });
+  async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      if (!req.user) {
+        return res.status(401).json({
+          success: false,
+          error: "Authentication required",
+        });
+      }
+
+      const user = await prisma.user.findUnique({
+        where: { id: req.user.userId },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          approvalStatus: true,
+          plan: true,
+        },
+      });
+
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          error: "Authentication required",
+        });
+      }
+
+      return res.json({
+        success: true,
+        message: "Authentication successful",
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          firstName: user.name,
+          lastName: null,
+          role: user.role,
+          approvalStatus: user.approvalStatus,
+          plan: user.plan,
+        },
+      });
+    } catch (error) {
+      console.error("Session lookup error:", error);
+      return res.status(500).json({
+        success: false,
+        error: "INTERNAL_ERROR",
+        message: "Unable to load the authenticated user",
+      });
+    }
   }
 );
 
@@ -130,6 +208,8 @@ app.use(
     });
   }
 );
+
+app.use(apiErrorHandler);
 
 // ==================================================
 // SERVER STARTUP

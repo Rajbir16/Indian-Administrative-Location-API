@@ -3,6 +3,7 @@ import {
   createApiKey,
   listApiKeys,
   revokeApiKey,
+  rotateApiSecret,
 } from "../controllers/apiKey.controller.js";
 import { authenticate } from "../middleware/auth.js";
 
@@ -16,5 +17,6 @@ router.get("/", authenticate, listApiKeys);
 
 // Revoke an API key
 router.delete("/:id", authenticate, revokeApiKey);
+router.post("/:id/rotate-secret", authenticate, rotateApiSecret);
 
 export default router;
